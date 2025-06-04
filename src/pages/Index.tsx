@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Education from "@/components/Education";
+import Projects from "@/components/Projects";
 
 const Index = () => {
   return (
@@ -11,6 +12,7 @@ const Index = () => {
       <About />
       <Skills />
       <Education />
+      <Projects />
       
       {/* Footer */}
       <footer className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-12">
