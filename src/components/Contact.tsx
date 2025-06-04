@@ -1,11 +1,10 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, Download, Calendar, QrCode } from "lucide-react";
+import { Mail, Phone, Download, Calendar, QrCode, MapPin, Github, Linkedin } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -27,6 +26,10 @@ const Contact = () => {
     e.preventDefault();
     // Form submission logic here
     console.log("Form submitted:", formData);
+  };
+
+  const handleResumeDownload = () => {
+    window.open("https://drive.google.com/file/d/16ChmYTlJLlqbCGG36_diO92NQNuxMkMd/view?usp=drive_link", "_blank");
   };
 
   return (
@@ -58,17 +61,51 @@ const Contact = () => {
                     </div>
                     <div>
                       <div className="font-semibold text-gray-800">Email</div>
-                      <div className="text-gray-600 text-sm">allamgowrishankar28@gmail.com</div>
+                      <div className="text-gray-600 text-sm">allamgowrishankar28@gmil.com</div>
                     </div>
                   </div>
                   
                   <div className="flex items-center space-x-4">
                     <div className="p-3 rounded-lg bg-gradient-to-r from-teal-600 to-blue-600 text-white">
-                      <Phone className="w-5 h-5" />
+                      <MapPin className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="font-semibold text-gray-800">Phone</div>
-                      <div className="text-gray-600 text-sm">+91 7013783977</div>
+                      <div className="font-semibold text-gray-800">Location</div>
+                      <div className="text-gray-600 text-sm">Palamaner, Chittoor Dist, Andhra Pradesh</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-4">
+                    <div className="p-3 rounded-lg bg-gradient-to-r from-blue-600 to-teal-600 text-white">
+                      <Linkedin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-800">LinkedIn</div>
+                      <a 
+                        href="https://linkedin.com/in/allamgowrishankar" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-700 text-sm transition-colors"
+                      >
+                        linkedin.com/in/allamgowrishankar
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-4">
+                    <div className="p-3 rounded-lg bg-gradient-to-r from-teal-600 to-blue-600 text-white">
+                      <Github className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-800">GitHub</div>
+                      <a 
+                        href="https://github.com/GowriShankarAllam" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-700 text-sm transition-colors"
+                      >
+                        github.com/GowriShankarAllam
+                      </a>
                     </div>
                   </div>
                 </CardContent>
@@ -80,7 +117,10 @@ const Contact = () => {
                   <CardTitle className="text-xl text-gray-800 mb-4">Quick Actions</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white">
+                  <Button 
+                    onClick={handleResumeDownload}
+                    className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white"
+                  >
                     <Download className="w-4 h-4 mr-2" />
                     Download Resume
                   </Button>
