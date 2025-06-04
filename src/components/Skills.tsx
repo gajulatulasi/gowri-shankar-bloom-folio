@@ -1,66 +1,48 @@
 
-import { Card } from "@/components/ui/card";
-import { useState, useEffect } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const Skills = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const hardSkills = [
-    { name: "Python", level: 95, icon: "🐍" },
-    { name: "Machine Learning", level: 90, icon: "🤖" },
-    { name: "TensorFlow", level: 85, icon: "🧠" },
-    { name: "PyTorch", level: 85, icon: "🔥" },
-    { name: "SQL", level: 88, icon: "🗄️" },
-    { name: "Java", level: 80, icon: "☕" },
-    { name: "Flask/FastAPI", level: 85, icon: "⚡" },
-    { name: "Git", level: 90, icon: "📚" },
-    { name: "Arduino", level: 75, icon: "🔧" },
-    { name: "NumPy/Pandas", level: 92, icon: "📊" },
+  const skillCategories = [
+    {
+      title: "Programming Languages",
+      icon: "💻",
+      skills: ["Python", "Java", "SQL"]
+    },
+    {
+      title: "AI & Machine Learning",
+      icon: "🤖",
+      skills: ["Scikit-learn", "TensorFlow", "PyTorch", "NLP", "LLMs"]
+    },
+    {
+      title: "Core Computer Science",
+      icon: "🔧",
+      skills: ["Data Structures & Algorithms", "OOP", "SDLC"]
+    },
+    {
+      title: "Data Analysis & Visualization",
+      icon: "📊",
+      skills: ["NumPy", "Pandas", "Matplotlib", "Seaborn", "Plotly"]
+    },
+    {
+      title: "Frameworks & Tools",
+      icon: "⚡",
+      skills: ["Flask", "FastAPI", "MLflow"]
+    },
+    {
+      title: "Embedded Platforms",
+      icon: "🔌",
+      skills: ["Arduino", "Raspberry Pi", "ESP32"]
+    },
+    {
+      title: "Dev Tools",
+      icon: "🛠️",
+      skills: ["Git", "GitHub", "GitLab", "VS Code", "PyCharm"]
+    }
   ];
-
-  const softSkills = [
-    { name: "Leadership", level: 95, icon: "👥" },
-    { name: "Mentoring", level: 98, icon: "🎯" },
-    { name: "Public Speaking", level: 90, icon: "🎤" },
-    { name: "Event Planning", level: 92, icon: "📅" },
-    { name: "Technical Writing", level: 88, icon: "✍️" },
-    { name: "Team Collaboration", level: 94, icon: "🤝" },
-  ];
-
-  const SkillBar = ({ skill, index }: { skill: any; index: number }) => (
-    <div 
-      className="group"
-      style={{ animationDelay: `${index * 0.1}s` }}
-    >
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center space-x-2">
-          <span className="text-2xl">{skill.icon}</span>
-          <span className="font-medium text-gray-700">{skill.name}</span>
-        </div>
-        <span className="text-sm font-semibold text-blue-600">{skill.level}%</span>
-      </div>
-      
-      <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-        <div 
-          className={`h-full bg-gradient-to-r from-blue-600 to-teal-600 rounded-full transition-all duration-1000 ease-out ${
-            isVisible ? 'animate-skill-fill' : 'w-0'
-          }`}
-          style={{ 
-            '--skill-width': `${skill.level}%`,
-            width: isVisible ? `${skill.level}%` : '0%'
-          } as any}
-        />
-      </div>
-    </div>
-  );
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-gradient-to-br from-blue-50 via-teal-50 to-white">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -68,72 +50,54 @@ const Skills = () => {
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
               Skills & Expertise
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              A comprehensive blend of technical proficiency and leadership capabilities 
-              developed through hands-on projects and community building
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+              The Tools and Technologies I Work With
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto mt-6 rounded-full"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Hard Skills */}
-            <Card className="p-8 bg-gradient-to-br from-blue-50 to-white border-0 shadow-lg">
-              <div className="flex items-center space-x-3 mb-8">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-teal-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white text-xl">⚙️</span>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800">Technical Skills</h3>
-              </div>
-              
-              <div className="space-y-6">
-                {hardSkills.map((skill, index) => (
-                  <SkillBar key={skill.name} skill={skill} index={index} />
-                ))}
-              </div>
-            </Card>
-
-            {/* Soft Skills */}
-            <Card className="p-8 bg-gradient-to-br from-teal-50 to-white border-0 shadow-lg">
-              <div className="flex items-center space-x-3 mb-8">
-                <div className="w-12 h-12 bg-gradient-to-br from-teal-600 to-blue-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white text-xl">🌟</span>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800">Soft Skills</h3>
-              </div>
-              
-              <div className="space-y-6">
-                {softSkills.map((skill, index) => (
-                  <SkillBar key={skill.name} skill={skill} index={index} />
-                ))}
-              </div>
-            </Card>
-          </div>
-
-          {/* Technologies Grid */}
-          <div className="mt-16">
-            <h3 className="text-2xl font-bold text-gray-800 text-center mb-8">Technologies & Tools</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {[
-                { name: "Scikit-learn", icon: "🔬" },
-                { name: "MLflow", icon: "📈" },
-                { name: "Plotly", icon: "📊" },
-                { name: "Jupyter", icon: "📓" },
-                { name: "Docker", icon: "🐳" },
-                { name: "VS Code", icon: "💻" },
-              ].map((tech, index) => (
-                <div 
-                  key={tech.name}
-                  className="group p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 border border-gray-100"
-                >
-                  <div className="text-center">
-                    <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-300">
-                      {tech.icon}
-                    </div>
-                    <div className="text-sm font-medium text-gray-700">{tech.name}</div>
+          {/* Skills Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {skillCategories.map((category, index) => (
+              <Card 
+                key={category.title}
+                className="bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                <CardHeader className="text-center pb-4">
+                  <div className="text-4xl mb-3">{category.icon}</div>
+                  <CardTitle className="text-lg text-gray-800 font-semibold">
+                    {category.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {category.skills.map((skill) => (
+                      <Badge
+                        key={skill}
+                        variant="secondary"
+                        className="bg-gradient-to-r from-blue-100 to-teal-100 text-gray-700 hover:from-blue-200 hover:to-teal-200 transition-all duration-200 font-medium"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
                   </div>
-                </div>
-              ))}
-            </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Tech Stack Highlight */}
+          <div className="mt-16 text-center">
+            <Card className="bg-gradient-to-r from-blue-600 to-teal-600 text-white border-0 shadow-xl">
+              <CardContent className="py-8">
+                <h3 className="text-2xl font-bold mb-4">Always Learning, Always Growing</h3>
+                <p className="text-blue-100 max-w-2xl mx-auto">
+                  Technology evolves rapidly, and so do I. I'm constantly exploring new frameworks, 
+                  tools, and methodologies to stay at the forefront of innovation and deliver 
+                  cutting-edge solutions.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
