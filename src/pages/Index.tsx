@@ -1,18 +1,50 @@
 
+import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Education from "@/components/Education";
 import Projects from "@/components/Projects";
+import Leadership from "@/components/Leadership";
+import ProjectBloom from "@/components/ProjectBloom";
+import Contact from "@/components/Contact";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <Hero />
-      <About />
-      <Skills />
-      <Education />
-      <Projects />
+      <Navigation />
+      
+      <section id="hero">
+        <Hero />
+      </section>
+      
+      <section id="about">
+        <About />
+      </section>
+      
+      <section id="skills">
+        <Skills />
+      </section>
+      
+      <section id="education">
+        <Education />
+      </section>
+      
+      <section id="projects">
+        <Projects />
+      </section>
+      
+      <section id="leadership">
+        <Leadership />
+      </section>
+      
+      <section id="collaborate">
+        <ProjectBloom />
+      </section>
+      
+      <section id="contact">
+        <Contact />
+      </section>
       
       {/* Footer */}
       <footer className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-12">
@@ -40,7 +72,7 @@ const Index = () => {
             
             <div className="border-t border-gray-700 pt-6">
               <p className="text-gray-400 text-sm">
-                © 2024 Gowri Shankar Allam. Crafted with passion for technology and innovation.
+                © 2025 Gowri Shankar Allam. Crafted with passion for technology and innovation.
               </p>
             </div>
           </div>
