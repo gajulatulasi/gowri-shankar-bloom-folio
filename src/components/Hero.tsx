@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Brain, Code, ArrowDown } from "lucide-react";
 
@@ -71,15 +70,16 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right content - Profile Photo Placeholder */}
+          {/* Right content - Profile Photo */}
           <div className="lg:w-1/2 flex justify-center lg:justify-end mt-12 lg:mt-0">
             <div className="relative">
               <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-teal-400 to-blue-500 p-2 animate-float">
-                <div className="w-full h-full rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <div className="text-6xl mb-4">👨‍💻</div>
-                    <div className="text-sm opacity-80">Profile Photo</div>
-                  </div>
+                <div className="w-full h-full rounded-full overflow-hidden border-4 border-white/30">
+                  <img 
+                    src="/lovable-uploads/5ab4b363-a1d2-4160-af34-4382d300d921.png"
+                    alt="Gowri Shankar Allam - AI & Machine Learning Engineer"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
               
