@@ -15,8 +15,8 @@ const FeaturedProjects = () => {
       tags: ["AI/ML", "Audio Processing"],
       icon: Music,
       gradient: "from-purple-500 to-pink-500",
-      github: "#",
-      demo: "#"
+      github: "https://github.com/GowriShankarAllam/AI-Music-Recommendation-and-Generation-System",
+      demo: "https://github.com/GowriShankarAllam/AI-Music-Recommendation-and-Generation-System"
     },
     {
       title: "E-Commerce Churn Prediction",
@@ -27,8 +27,8 @@ const FeaturedProjects = () => {
       tags: ["AI/ML", "Business Analytics"],
       icon: ShoppingCart,
       gradient: "from-blue-500 to-cyan-500",
-      github: "#",
-      demo: "#"
+      github: "https://github.com/GowriShankarAllam/E-commerce-customer-churn-prediction",
+      demo: "https://github.com/GowriShankarAllam/E-commerce-customer-churn-prediction"
     },
     {
       title: "Email Spam Detection",
@@ -39,8 +39,8 @@ const FeaturedProjects = () => {
       tags: ["AI/ML", "NLP"],
       icon: Mail,
       gradient: "from-green-500 to-teal-500",
-      github: "#",
-      demo: "#"
+      github: "https://github.com/GowriShankarAllam/email_spam_detection",
+      demo: "https://github.com/GowriShankarAllam/email_spam_detection"
     },
     {
       title: "ISTE Website Platform",
@@ -52,9 +52,13 @@ const FeaturedProjects = () => {
       icon: Globe,
       gradient: "from-orange-500 to-red-500",
       github: "#",
-      demo: "#"
+      demo: "https://istembu.in"
     }
   ];
+
+  const handleLinkClick = (url: string) => {
+    window.open(url, "_blank");
+  };
 
   return (
     <div className="grid lg:grid-cols-2 gap-8">
@@ -118,20 +122,24 @@ const FeaturedProjects = () => {
             </div>
 
             <div className="flex space-x-3 pt-4">
-              <Button 
-                size="sm" 
-                className="flex-1 bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black"
-              >
-                <Github className="w-4 h-4 mr-2" />
-                GitHub
-              </Button>
+              {project.github !== "#" && (
+                <Button 
+                  size="sm" 
+                  className="flex-1 bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black"
+                  onClick={() => handleLinkClick(project.github)}
+                >
+                  <Github className="w-4 h-4 mr-2" />
+                  GitHub
+                </Button>
+              )}
               <Button 
                 size="sm" 
                 variant="outline" 
                 className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-50"
+                onClick={() => handleLinkClick(project.demo)}
               >
                 <ExternalLink className="w-4 h-4 mr-2" />
-                Demo
+                {project.demo.includes("github.com") ? "Repository" : "Demo"}
               </Button>
             </div>
           </CardContent>
