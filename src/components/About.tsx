@@ -1,8 +1,25 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Mail, MapPin, Linkedin, Github, Download } from "lucide-react";
 
 const About = () => {
+  const handleResumeDownload = () => {
+    window.open("https://drive.google.com/file/d/16ChmYTlJLlqbCGG36_diO92NQNuxMkMd/view?usp=drive_link", "_blank");
+  };
+
+  const handleLinkedInClick = () => {
+    window.open("https://www.linkedin.com/in/allamgowrishankar", "_blank");
+  };
+
+  const handleGitHubClick = () => {
+    window.open("https://github.com/GowriShankarAllam", "_blank");
+  };
+
+  const handleEmailClick = () => {
+    window.location.href = "mailto:allamgowrishankar28@gmail.com";
+  };
+
   return (
     <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-6">
@@ -52,40 +69,58 @@ const About = () => {
                 <h3 className="text-2xl font-bold text-gray-800 mb-6">Let's Connect</h3>
                 
                 <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
+                  <button 
+                    onClick={handleEmailClick}
+                    className="flex items-center space-x-3 w-full text-left hover:bg-white/50 p-2 rounded-lg transition-colors"
+                  >
                     <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold">📍</span>
+                      <Mail className="w-5 h-5 text-white" />
                     </div>
-                    <span className="text-gray-700">Tirupati, India</span>
-                  </div>
+                    <span className="text-gray-700">allamgowrishankar28@gmail.com</span>
+                  </button>
                   
+                  <button 
+                    onClick={handleLinkedInClick}
+                    className="flex items-center space-x-3 w-full text-left hover:bg-white/50 p-2 rounded-lg transition-colors"
+                  >
+                    <div className="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center">
+                      <Linkedin className="w-5 h-5 text-white" />
+                    </div>
+                    <span className="text-gray-700">linkedin.com/in/allamgowrishankar</span>
+                  </button>
+                  
+                  <button 
+                    onClick={handleGitHubClick}
+                    className="flex items-center space-x-3 w-full text-left hover:bg-white/50 p-2 rounded-lg transition-colors"
+                  >
+                    <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center">
+                      <Github className="w-5 h-5 text-white" />
+                    </div>
+                    <span className="text-gray-700">github.com/GowriShankarAllam</span>
+                  </button>
+
                   <div className="flex items-center space-x-3">
                     <div className="w-10 h-10 bg-teal-600 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold">✉️</span>
+                      <MapPin className="w-5 h-5 text-white" />
                     </div>
-                    <span className="text-gray-700">gowrishankar@example.com</span>
-                  </div>
-                  
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold">💼</span>
-                    </div>
-                    <span className="text-gray-700">LinkedIn Profile</span>
-                  </div>
-                  
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold">🐙</span>
-                    </div>
-                    <span className="text-gray-700">GitHub Profile</span>
+                    <span className="text-gray-700">Palamaner, Chittoor Dist, Andhra Pradesh</span>
                   </div>
                 </div>
 
                 <div className="mt-8 space-y-3">
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold">
+                  <Button 
+                    onClick={handleResumeDownload}
+                    className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold"
+                  >
+                    <Download className="w-4 h-4 mr-2" />
                     Download Resume
                   </Button>
-                  <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50">
+                  <Button 
+                    onClick={handleLinkedInClick}
+                    variant="outline" 
+                    className="w-full border-blue-600 text-blue-600 hover:bg-blue-50"
+                  >
+                    <Linkedin className="w-4 h-4 mr-2" />
                     View LinkedIn
                   </Button>
                 </div>
