@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowUp } from "lucide-react";
@@ -12,10 +11,10 @@ const Navigation = () => {
     { label: "About", href: "#about" },
     { label: "Skills", href: "#skills" },
     { label: "Projects", href: "#projects" },
-    { label: "Publications", href: "#publications" },
     { label: "Leadership", href: "#leadership" },
     { label: "Collaborate", href: "#collaborate" },
-    { label: "Contact", href: "#contact" }
+    { label: "Contact", href: "#contact" },
+    { label: "Request Workshop", href: "#form" }
   ];
 
   useEffect(() => {
@@ -55,12 +54,16 @@ const Navigation = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
+            <div className="hidden lg:flex items-center space-x-6">
               {navItems.map((item) => (
                 <button
                   key={item.label}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                  className={`text-gray-700 hover:text-blue-600 transition-colors font-medium text-sm ${
+                    item.label === "Request Workshop" 
+                      ? "bg-gradient-to-r from-blue-600 to-teal-600 text-white px-3 py-2 rounded-md hover:from-blue-700 hover:to-teal-700" 
+                      : ""
+                  }`}
                 >
                   {item.label}
                 </button>
