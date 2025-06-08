@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowUp } from "lucide-react";
@@ -14,7 +15,7 @@ const Navigation = () => {
     { label: "Leadership", href: "#leadership" },
     { label: "Collaborate", href: "#collaborate" },
     { label: "Contact", href: "#contact" },
-    { label: "Request Workshop", href: "#form" }
+    { label: "Request Workshop", href: "#request" }
   ];
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const Navigation = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMobileMenuOpen(false);
   };

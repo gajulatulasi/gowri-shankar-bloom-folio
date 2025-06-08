@@ -56,15 +56,15 @@ const Index = () => {
             </p>
             
             <div className="flex justify-center space-x-6 mb-8">
-              <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors">
+              <a href="https://www.linkedin.com/in/allamgowrishankar" className="text-gray-300 hover:text-blue-400 transition-colors">
                 <span className="sr-only">LinkedIn</span>
                 💼
               </a>
-              <a href="#" className="text-gray-300 hover:text-gray-100 transition-colors">
+              <a href="https://github.com/GowriShankarAllam" className="text-gray-300 hover:text-gray-100 transition-colors">
                 <span className="sr-only">GitHub</span>
                 🐙
               </a>
-              <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors">
+              <a href="mailto:allamgowrishankar28@gmail.com" className="text-gray-300 hover:text-blue-400 transition-colors">
                 <span className="sr-only">Email</span>
                 ✉️
               </a>
@@ -74,6 +74,16 @@ const Index = () => {
               <p className="text-gray-400 text-sm">
                 © 2025 Gowri Shankar Allam. Crafted with passion for technology and innovation.
               </p>
+              <a 
+                href="#hero" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="inline-block mt-4 text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                Back to Top ↑
+              </a>
             </div>
           </div>
         </div>
