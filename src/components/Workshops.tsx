@@ -28,6 +28,28 @@ const Workshops = () => {
       year: "2024"
     },
     {
+      title: "Java & DBMS Hands-on Workshop",
+      participants: "180+",
+      duration: "4 Days",
+      description: "Comprehensive workshop covering Java programming fundamentals and database management systems with practical projects.",
+      topics: ["Java OOP", "Exception Handling", "SQL Queries", "Database Design", "JDBC"],
+      rating: 4.6,
+      testimonials: "Perfect blend of theory and hands-on practice",
+      gradient: "from-orange-500 to-red-600",
+      year: "2024"
+    },
+    {
+      title: "Git & GitHub Masterclass",
+      participants: "120+",
+      duration: "1 Day",
+      description: "Complete version control workshop covering Git fundamentals, GitHub collaboration, and industry best practices.",
+      topics: ["Git Basics", "Branching", "Merging", "GitHub Actions", "Open Source"],
+      rating: 4.9,
+      testimonials: "Essential skills for modern development workflow",
+      gradient: "from-gray-600 to-gray-800",
+      year: "2025"
+    },
+    {
       title: "Data Science Bootcamp",
       participants: "100+",
       duration: "5 Days",
@@ -132,7 +154,7 @@ const Workshops = () => {
           <h3 className="text-2xl font-bold mb-4">Workshop Impact</h3>
           <div className="grid md:grid-cols-3 gap-6">
             <div>
-              <div className="text-3xl font-bold">450+</div>
+              <div className="text-3xl font-bold">750+</div>
               <div className="text-blue-100">Total Students Trained</div>
             </div>
             <div>
@@ -140,7 +162,7 @@ const Workshops = () => {
               <div className="text-blue-100">Average Rating</div>
             </div>
             <div>
-              <div className="text-3xl font-bold">15+</div>
+              <div className="text-3xl font-bold">20+</div>
               <div className="text-blue-100">Workshop Sessions</div>
             </div>
           </div>
