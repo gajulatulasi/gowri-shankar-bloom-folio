@@ -5,25 +5,16 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Education from "@/components/Education";
 import Projects from "@/components/Projects";
-import Hackathons from "@/components/Hackathons";
-import Publications from "@/components/Publications";
-import Workshops from "@/components/Workshops";
 import Leadership from "@/components/Leadership";
 import ProjectBloom from "@/components/ProjectBloom";
 import Contact from "@/components/Contact";
-import { ArrowUp } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const Index = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <div className="min-h-screen">
       <Navigation />
       
-      <section id="home">
+      <section id="hero">
         <Hero />
       </section>
       
@@ -41,18 +32,6 @@ const Index = () => {
       
       <section id="projects">
         <Projects />
-      </section>
-      
-      <section id="hackathons">
-        <Hackathons />
-      </section>
-      
-      <section id="publications">
-        <Publications />
-      </section>
-      
-      <section id="workshops">
-        <Workshops />
       </section>
       
       <section id="leadership">
@@ -89,18 +68,6 @@ const Index = () => {
                 <span className="sr-only">Email</span>
                 ✉️
               </a>
-            </div>
-            
-            {/* Back to Top Link in Footer */}
-            <div className="mb-6">
-              <Button
-                onClick={scrollToTop}
-                variant="outline"
-                className="border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white transition-all duration-200"
-              >
-                <ArrowUp className="w-4 h-4 mr-2" />
-                Back to Top
-              </Button>
             </div>
             
             <div className="border-t border-gray-700 pt-6">
