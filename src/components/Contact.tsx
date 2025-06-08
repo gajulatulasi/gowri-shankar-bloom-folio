@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,8 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Mail, Phone, Download, Calendar, QrCode, MapPin, Github, Linkedin, CheckCircle } from "lucide-react";
+import { Mail, Phone, Download, QrCode, MapPin, Github, Linkedin, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import ScheduleMeetingModal from "./ScheduleMeetingModal";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -196,10 +196,7 @@ Submission Time: ${new Date().toLocaleString()}
                     Download Resume
                   </Button>
                   
-                  <Button variant="outline" className="w-full border-gray-300 text-gray-700 hover:bg-gray-50">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Schedule Meeting
-                  </Button>
+                  <ScheduleMeetingModal />
                   
                   <div className="text-center pt-4">
                     <div className="flex justify-center items-center space-x-2 text-gray-600">

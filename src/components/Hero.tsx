@@ -1,9 +1,24 @@
+
 import { Button } from "@/components/ui/button";
 import { Brain, Code, ArrowDown } from "lucide-react";
 
 const Hero = () => {
+  const scrollToProjects = () => {
+    const element = document.querySelector('#projects');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToContact = () => {
+    const element = document.querySelector('#contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-teal-600">
+    <section id="home" className="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-teal-600">
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 animate-float">
@@ -55,12 +70,14 @@ const Hero = () => {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
+                onClick={scrollToContact}
                 size="lg" 
                 className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8 py-3 text-lg"
               >
                 Get in Touch
               </Button>
               <Button 
+                onClick={scrollToProjects}
                 size="lg" 
                 variant="outline" 
                 className="border-white text-white hover:bg-white hover:text-blue-600 font-semibold px-8 py-3 text-lg"
