@@ -5,27 +5,22 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CalendarIcon, CheckCircle } from "lucide-react";
-import { format } from "date-fns";
+import { CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const RequestForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<Date>();
-  const [selectedTime, setSelectedTime] = useState("");
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
-    from_name: "",
-    reply_to: "",
+    name: "",
+    email: "",
     organization: "",
     phone: "",
     purpose: "",
-    message: "",
-    preferred_datetime: ""
+    datetime: "",
+    message: ""
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -47,10 +42,10 @@ const RequestForm = () => {
     e.preventDefault();
     
     // Validate required fields
-    if (!formData.from_name || !formData.reply_to || !formData.purpose) {
+    if (!formData.name || !formData.email || !formData.purpose || !formData.message) {
       toast({
         title: "Please fill in all required fields",
-        description: "Name, Email, and Meeting Purpose are required.",
+        description: "Name, Email, Meeting Purpose, and Message are required.",
         variant: "destructive"
       });
       return;
@@ -59,59 +54,42 @@ const RequestForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Format date and time
-      const dateTimeString = selectedDate && selectedTime 
-        ? `${format(selectedDate, 'PPP')} at ${selectedTime}`
-        : 'To be discussed';
-
-      // Prepare form data for EmailJS
-      const emailData = {
-        ...formData,
-        preferred_datetime: dateTimeString,
-        to_email: "allamgowrishankar28@gmail.com"
-      };
-
-      // Use EmailJS (note: in production, replace with actual service/template/user IDs)
-      // For now, we'll use mailto as fallback since EmailJS requires setup
-      const subject = encodeURIComponent(`Meeting Request - ${formData.purpose} - ${formData.from_name}`);
-      const body = encodeURIComponent(`
-Meeting Request Details:
-
-Name: ${formData.from_name}
-Email: ${formData.reply_to}
-Organization: ${formData.organization || 'Not provided'}
-Phone: ${formData.phone || 'Not provided'}
-Meeting Purpose: ${formData.purpose}
-Preferred Date & Time: ${dateTimeString}
-
-Message:
-${formData.message || 'No additional message provided'}
-
-Submission Time: ${new Date().toLocaleString()}
-      `);
-      
-      const mailtoLink = `mailto:allamgowrishankar28@gmail.com?subject=${subject}&body=${body}`;
-      window.location.href = mailtoLink;
-      
-      // Show success message
-      setIsSubmitted(true);
-      toast({
-        title: "Thanks for scheduling! I'll get back to you shortly.",
-        description: "Your request has been prepared. Please send the email from your email client.",
+      const response = await fetch("https://formspree.io/f/manjenwo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          organization: formData.organization || "Not provided",
+          phone: formData.phone || "Not provided",
+          purpose: formData.purpose,
+          datetime: formData.datetime || "To be discussed",
+          message: formData.message
+        })
       });
-      
-      // Reset form
-      setFormData({
-        from_name: "",
-        reply_to: "",
-        organization: "",
-        phone: "",
-        purpose: "",
-        message: "",
-        preferred_datetime: ""
-      });
-      setSelectedDate(undefined);
-      setSelectedTime("");
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        toast({
+          title: "✅ Thanks! Your request has been received. I'll get back to you shortly.",
+          description: "Form submitted successfully.",
+        });
+        
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          organization: "",
+          phone: "",
+          purpose: "",
+          datetime: "",
+          message: ""
+        });
+      } else {
+        throw new Error("Submission failed");
+      }
       
     } catch (error) {
       toast({
@@ -127,29 +105,22 @@ Submission Time: ${new Date().toLocaleString()}
   const resetForm = () => {
     setIsSubmitted(false);
     setFormData({
-      from_name: "",
-      reply_to: "",
+      name: "",
+      email: "",
       organization: "",
       phone: "",
       purpose: "",
-      message: "",
-      preferred_datetime: ""
+      datetime: "",
+      message: ""
     });
-    setSelectedDate(undefined);
-    setSelectedTime("");
   };
-
-  const timeSlots = [
-    "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
-    "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"
-  ];
 
   if (isSubmitted) {
     return (
       <div className="text-center py-12">
         <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-        <h3 className="text-2xl font-bold text-gray-800 mb-2">Thanks for scheduling! I'll get back to you shortly.</h3>
-        <p className="text-gray-600 mb-6">Your request has been prepared for sending.</p>
+        <h3 className="text-2xl font-bold text-gray-800 mb-2">✅ Thanks! Your request has been received. I'll get back to you shortly.</h3>
+        <p className="text-gray-600 mb-6">Your form has been submitted successfully.</p>
         <Button 
           onClick={resetForm}
           className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white"
@@ -164,14 +135,14 @@ Submission Time: ${new Date().toLocaleString()}
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <Label htmlFor="from_name" className="text-gray-700 font-medium">
+          <Label htmlFor="name" className="text-gray-700 font-medium">
             Full Name *
           </Label>
           <Input
-            id="from_name"
-            name="from_name"
+            id="name"
+            name="name"
             type="text"
-            value={formData.from_name}
+            value={formData.name}
             onChange={handleInputChange}
             required
             className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
@@ -180,14 +151,14 @@ Submission Time: ${new Date().toLocaleString()}
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="reply_to" className="text-gray-700 font-medium">
+          <Label htmlFor="email" className="text-gray-700 font-medium">
             Email Address *
           </Label>
           <Input
-            id="reply_to"
-            name="reply_to"
+            id="email"
+            name="email"
             type="email"
-            value={formData.reply_to}
+            value={formData.email}
             onChange={handleInputChange}
             required
             className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
@@ -228,71 +199,48 @@ Submission Time: ${new Date().toLocaleString()}
         </div>
       </div>
       
-      <div className="space-y-2">
-        <Label htmlFor="purpose" className="text-gray-700 font-medium">
-          Request Type *
-        </Label>
-        <Select onValueChange={handleSelectChange} value={formData.purpose} required>
-          <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-            <SelectValue placeholder="What would you like to request?" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="workshop">Workshop</SelectItem>
-            <SelectItem value="talk">Talk/Presentation</SelectItem>
-            <SelectItem value="collaboration">General Collaboration</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
       <div className="grid md:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <Label className="text-gray-700 font-medium">Preferred Date</Label>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                className="w-full justify-start text-left font-normal border-gray-300"
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {selectedDate ? format(selectedDate, "PPP") : "Pick a date"}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
-              <Calendar
-                mode="single"
-                selected={selectedDate}
-                onSelect={setSelectedDate}
-                disabled={(date) => date < new Date()}
-                initialFocus
-              />
-            </PopoverContent>
-          </Popover>
+          <Label htmlFor="purpose" className="text-gray-700 font-medium">
+            Meeting Purpose *
+          </Label>
+          <Select onValueChange={handleSelectChange} value={formData.purpose} required>
+            <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+              <SelectValue placeholder="Select meeting purpose" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="workshop">Workshop</SelectItem>
+              <SelectItem value="speaker-session">Speaker Session</SelectItem>
+              <SelectItem value="general-collaboration">General Collaboration</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="space-y-2">
-          <Label className="text-gray-700 font-medium">Preferred Time</Label>
-          <Select onValueChange={setSelectedTime} value={selectedTime}>
-            <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-              <SelectValue placeholder="Select time" />
-            </SelectTrigger>
-            <SelectContent>
-              {timeSlots.map((time) => (
-                <SelectItem key={time} value={time}>{time}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <Label htmlFor="datetime" className="text-gray-700 font-medium">
+            Preferred Date & Time
+          </Label>
+          <Input
+            id="datetime"
+            name="datetime"
+            type="datetime-local"
+            value={formData.datetime}
+            onChange={handleInputChange}
+            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+          />
         </div>
       </div>
       
       <div className="space-y-2">
         <Label htmlFor="message" className="text-gray-700 font-medium">
-          Message / Description
+          Message / Description *
         </Label>
         <Textarea
           id="message"
           name="message"
           value={formData.message}
           onChange={handleInputChange}
+          required
           rows={4}
           className="border-gray-300 focus:border-blue-500 focus:ring-blue-500 resize-none"
           placeholder="Tell me more about what you'd like to discuss..."
