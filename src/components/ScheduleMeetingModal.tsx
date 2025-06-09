@@ -117,13 +117,13 @@ const RequestForm = () => {
 
   if (isSubmitted) {
     return (
-      <div className="text-center py-12">
-        <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-        <h3 className="text-2xl font-bold text-gray-800 mb-2">✅ Thanks! Your request has been received. I'll get back to you shortly.</h3>
-        <p className="text-gray-600 mb-6">Your form has been submitted successfully.</p>
+      <div className="text-center py-8 sm:py-12">
+        <CheckCircle className="w-12 h-12 sm:w-16 sm:h-16 text-green-500 mx-auto mb-4" />
+        <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2 break-words">✅ Thanks! Your request has been received. I'll get back to you shortly.</h3>
+        <p className="text-gray-600 mb-6 text-sm sm:text-base break-words">Your form has been submitted successfully.</p>
         <Button 
           onClick={resetForm}
-          className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white"
+          className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white min-h-[44px]"
         >
           Submit Another Request
         </Button>
@@ -133,9 +133,9 @@ const RequestForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div className="space-y-2">
-          <Label htmlFor="name" className="text-gray-700 font-medium">
+          <Label htmlFor="name" className="text-gray-700 font-medium text-sm sm:text-base">
             Full Name *
           </Label>
           <Input
@@ -145,13 +145,13 @@ const RequestForm = () => {
             value={formData.name}
             onChange={handleInputChange}
             required
-            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500 min-h-[44px] text-sm sm:text-base"
             placeholder="Your full name"
           />
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-gray-700 font-medium">
+          <Label htmlFor="email" className="text-gray-700 font-medium text-sm sm:text-base">
             Email Address *
           </Label>
           <Input
@@ -161,15 +161,15 @@ const RequestForm = () => {
             value={formData.email}
             onChange={handleInputChange}
             required
-            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500 min-h-[44px] text-sm sm:text-base"
             placeholder="your.email@example.com"
           />
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div className="space-y-2">
-          <Label htmlFor="organization" className="text-gray-700 font-medium">
+          <Label htmlFor="organization" className="text-gray-700 font-medium text-sm sm:text-base">
             Institution/Organization
           </Label>
           <Input
@@ -178,13 +178,13 @@ const RequestForm = () => {
             type="text"
             value={formData.organization}
             onChange={handleInputChange}
-            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500 min-h-[44px] text-sm sm:text-base"
             placeholder="Your institution or organization"
           />
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="phone" className="text-gray-700 font-medium">
+          <Label htmlFor="phone" className="text-gray-700 font-medium text-sm sm:text-base">
             Phone Number
           </Label>
           <Input
@@ -193,19 +193,19 @@ const RequestForm = () => {
             type="tel"
             value={formData.phone}
             onChange={handleInputChange}
-            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500 min-h-[44px] text-sm sm:text-base"
             placeholder="Your phone number (optional)"
           />
         </div>
       </div>
       
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div className="space-y-2">
-          <Label htmlFor="purpose" className="text-gray-700 font-medium">
+          <Label htmlFor="purpose" className="text-gray-700 font-medium text-sm sm:text-base">
             Meeting Purpose *
           </Label>
           <Select onValueChange={handleSelectChange} value={formData.purpose} required>
-            <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+            <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500 min-h-[44px] text-sm sm:text-base">
               <SelectValue placeholder="Select meeting purpose" />
             </SelectTrigger>
             <SelectContent>
@@ -217,7 +217,7 @@ const RequestForm = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="datetime" className="text-gray-700 font-medium">
+          <Label htmlFor="datetime" className="text-gray-700 font-medium text-sm sm:text-base">
             Preferred Date & Time
           </Label>
           <Input
@@ -226,13 +226,13 @@ const RequestForm = () => {
             type="datetime-local"
             value={formData.datetime}
             onChange={handleInputChange}
-            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500 min-h-[44px] text-sm sm:text-base"
           />
         </div>
       </div>
       
       <div className="space-y-2">
-        <Label htmlFor="message" className="text-gray-700 font-medium">
+        <Label htmlFor="message" className="text-gray-700 font-medium text-sm sm:text-base">
           Message / Description *
         </Label>
         <Textarea
@@ -242,7 +242,7 @@ const RequestForm = () => {
           onChange={handleInputChange}
           required
           rows={4}
-          className="border-gray-300 focus:border-blue-500 focus:ring-blue-500 resize-none"
+          className="border-gray-300 focus:border-blue-500 focus:ring-blue-500 resize-none text-sm sm:text-base"
           placeholder="Tell me more about what you'd like to discuss..."
         />
       </div>
@@ -250,7 +250,7 @@ const RequestForm = () => {
       <Button 
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white py-3 text-lg font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 disabled:opacity-50"
+        className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white py-3 text-base sm:text-lg font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 disabled:opacity-50 min-h-[44px]"
       >
         {isSubmitting ? "Submitting..." : "Submit Request"}
       </Button>
